@@ -26,16 +26,14 @@ def login_page():
     st.markdown("#### Enter your credentials")
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
-    submit = st.button("Login",on_click=set_login)
-    if st.button("Register here"):
-            st.switch_page("pages/Register.py")
-    if username and password:
+    c1,c2 = st.columns([5.5,1],gap="large")
+    #if username and password:
+    if c1.button("Login",on_click=set_login):
         if st.session_state["login_clicked"] != None:
             st.session_state.page = ""
             if db.validate_user(username, password):
                 st.session_state.logged_in = True
                 st.session_state.current_user = username
-                print(st.session_state.get("current_user", None))
                 st.success("Login successful!")
                 #placeholder.empty()
                 #sleep(0.01)
@@ -45,10 +43,9 @@ def login_page():
                 #trigger_page()
             else:
                 st.error("Invalid username or password.")
-        st.session_state["login_clicked"] = None
+    st.session_state["login_clicked"] = None
 
-    #with placeholder2:
-        #placeholder.empty()
-        
+    if c2.button("Sign up"):
+        st.switch_page("pages/Register.py")
             
 login_page()
