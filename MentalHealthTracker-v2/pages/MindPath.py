@@ -8,6 +8,22 @@ from modules import db
 from time import sleep
 
 #st.set_page_config(layout="wide")
+if st.session_state['logged_in']:
+    username = st.session_state['current_user']
+    
+    # Add username to sidebar
+    with st.sidebar:
+        st.markdown(f"""
+            <div style='
+                padding: 8px; 
+                text-color: #f0f2f6;
+                text-align: center; 
+                font-weight: bold;
+                border-bottom: 2px solid #f0f2f6;
+                margin-bottom: 10px;'>
+                👤 Welcome {username}!
+            </div>
+        """, unsafe_allow_html=True)
 
 def main_page():
     import streamlit as st
