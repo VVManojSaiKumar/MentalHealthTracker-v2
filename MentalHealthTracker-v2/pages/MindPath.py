@@ -17,14 +17,26 @@ if st.session_state['logged_in']:
             <div style='
                 padding: 8px; 
                 text-color: #f0f2f6;
-                text-align: center; 
+                text-align: left; 
                 font-weight: bold;
                 border-bottom: 2px solid #f0f2f6;
                 margin-bottom: 10px;'>
                 👤 Welcome {username}!
             </div>
         """, unsafe_allow_html=True)
-
+    with st.sidebar:
+        st.markdown(f"""
+            <div style='
+                padding: 8px; 
+                text-color: #f0f2f6;
+                text-align: left; 
+                font-weight: bold;
+                border-bottom: 2px solid #f0f2f6;
+                margin-bottom: 10px;'>
+                🔆 MindPath: Your Path To Better Health!
+            </div>
+        """, unsafe_allow_html=True)
+        
 def main_page():
     import streamlit as st
     print(st.session_state.get("current_user", None))
@@ -49,6 +61,7 @@ With MindPath, you can track your moods, uncover patterns in your mental health 
         - Visualization of the mental health data over time.
         - Personalized Guidance based on current mental health.
         - Chat with AI Therapist.
+        - Track daily activities
 
         """
 
@@ -60,7 +73,27 @@ if st.session_state.get("current_user", None):
     col3,spacer, col4 = st.columns([6, 0.5,1])  
 
     with col3:
-        st.title("**🧠 :rainbow[Mental Health Tracker]**")
+        # Add custom CSS for rainbow text
+        st.markdown(
+            """
+            <style>
+            .rainbow-title {
+                font-size: 30px;
+                font-weight: bold;
+                text-align: left;
+                background: linear-gradient(90deg, red, orange, yellow, green,blue);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+            }
+            </style>
+            """,
+            unsafe_allow_html=True
+            #blue, indigo, violet
+        )
+
+        # Use the rainbow text class
+        #st.markdown("🧠 <div class='rainbow-title'>MindPath:Path To Better Health</div>", unsafe_allow_html=True)
+        st.title("**🧠 :rainbow[MindPath:To Better Health]**")
 
     with col4:
         if st.button("Logout"):
@@ -71,12 +104,12 @@ if st.session_state.get("current_user", None):
 
     page_names_to_funcs = {
         #"Login": st.switch_page("pages/login.py"),
-        "Home": main_page,
-        "Mental Health Diagnosis": questions.ask_questions,
-        "Visualization": visualizations.show_visualization,
-        "Chat With AI Therepist": ai_chatbot.ai_therepist,
-        "Track Activities":questions.track_activities,
-        "Guidance": guidance.show_guidance,
+        "🏠 Home": main_page,
+        "📝 Mental Health Diagnosis": questions.ask_questions,
+        "📊 Visualization": visualizations.show_visualization,
+        "✨ Chat With AI Therapist": ai_chatbot.ai_therepist,
+        "⛹🏾 Track Activities":questions.track_activities,
+        "✨ Guidance": guidance.show_guidance,
         #"Admin": admin.admin_page,
     }
     if st.session_state.get("current_user", None)=='admin':
@@ -89,5 +122,19 @@ if st.session_state.get("current_user", None):
     
 else:
     st.switch_page("login.py")
+
+url = "https://telemanas.mohfw.gov.in/home"
+with st.sidebar:
+    st.markdown(f"""
+        <div style='
+            padding: 8px; 
+            text-color: #f0f2f6;
+            text-align: left; 
+            font-weight: bold;
+            border-bottom: 2px solid #f0f2f6;
+            margin-bottom: 10px;'>
+            🚨 Get more help on Govt of India National Tele MANAS helpline <a href="https://telemanas.mohfw.gov.in/home">telemanas</a>
+        </div>
+    """, unsafe_allow_html=True)
 
 #trigger_page()

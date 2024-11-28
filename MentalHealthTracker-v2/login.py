@@ -26,7 +26,7 @@ def login_page():
     st.markdown("#### Enter your credentials")
     username = st.text_input("Username")
     password = st.text_input("Password", type="password")
-    c1,c2 = st.columns([5.5,1],gap="large")
+    c1,c2 = st.columns([5,1],gap="large")
     #if username and password:
     if c1.button("Login",on_click=set_login):
         if st.session_state["login_clicked"] != None:

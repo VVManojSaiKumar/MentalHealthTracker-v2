@@ -70,6 +70,9 @@ def ask_questions():
 
 #ask_questions()
 def track_activities():
+    sidebar_logo = "images/logo.png"
+    with st.sidebar:
+        st.image(sidebar_logo)
     if 'activities' not in st.session_state:
         st.session_state.activities = []
     st.subheader("Track Your Activities")
